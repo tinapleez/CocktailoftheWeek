@@ -8,7 +8,6 @@ package com.freecbdhomebiz.cocktailoftheweek;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.util.Log;
 import java.util.List;
 
 public class CocktailLoader extends AsyncTaskLoader<List<Cocktail>> {
@@ -33,8 +32,6 @@ public class CocktailLoader extends AsyncTaskLoader<List<Cocktail>> {
 
     @Override
     protected void onStartLoading() {
-        Log.i(LOG_TAG, "TEST: onStartLoading() called ...");
-
         forceLoad();
     }
 
@@ -43,14 +40,10 @@ public class CocktailLoader extends AsyncTaskLoader<List<Cocktail>> {
      */
     @Override
     public List<Cocktail> loadInBackground() {
-        Log.i(LOG_TAG, "TEST: loadInBackground() called ...");
-        Log.i(LOG_TAG, mUrl);
-
         if (mUrl == null) {
             return null;
         }
-
-        // Perform the network request, parse the response, and extract a list of cocktails.
+        // Perform the network request, parse the response, and extract a list of Cocktail articles.
         // Return list of cocktail articles to CocktailAdapter
         List<Cocktail> cocktailArticleList = QueryUtils.fetchCocktailData(mUrl);
         return cocktailArticleList;

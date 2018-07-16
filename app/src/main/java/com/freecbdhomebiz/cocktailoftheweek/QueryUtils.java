@@ -42,7 +42,6 @@ public final class QueryUtils {
      * Query the GUARDIAN and return a list of {@link Cocktail} objects. Called from CocktailLoader
      */
     public static List<Cocktail> fetchCocktailData(String requestUrl) {
-        Log.i("QueryUtils", "TEST: fetchCocktailData() called ...");
 
         // Just for fun, can simulate a slow network response by sleeping for 5 seconds
         //try {
@@ -182,40 +181,30 @@ public final class QueryUtils {
                 // Extract the value for the key called "webTitle", which is the name of the
                 // article.
                 String cocktailName = currentCocktail.getString("webTitle");
-                Log.i("QueryUtils", "Show the webTitle " + cocktailName);
 
                 // Extract the value for the key called "webPublicationDate"
                 String date = currentCocktail.getString("webPublicationDate");
-                Log.i("QueryUtils", "Show the date " + date);
 
                 // Extract the value for the key called "webUrl"
                 String url = currentCocktail.getString("webUrl");
-                Log.i("QueryUtils", "Show the url " + url);
 
 
                 // The key "fields" object holds the byline, which is the author's name
                 JSONObject fields = currentCocktail.getJSONObject("fields");
-
                 String author = fields.getString("byline");
-                Log.i("QueryUtils", "Show the byline " + author);
-
 
                 // The key "blocks" object holds the "body" array, which first element contains the
                 // article summary
                 JSONObject blocks = currentCocktail.getJSONObject("blocks");
-
                 JSONArray body = blocks.getJSONArray("body");
-
                 JSONObject bodyFields = body.getJSONObject(0);
-
                 String summary = bodyFields.getString("bodyTextSummary");
-                Log.i("QueryUtils", "Show the summary " + summary);
 
                 // Create a new {@link Cocktail} object with the cocktailName, author, date,
                 // summary, and url
                 Cocktail fieldsExtracted = new Cocktail(cocktailName, author, date, summary, url);
 
-                // Add the new {@link Earthquake} to the list of cocktails.
+                // Add the new object to the list of Cocktail articles.
                 cocktailList.add(fieldsExtracted);
             }
 
