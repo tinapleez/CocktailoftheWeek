@@ -40,7 +40,6 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="3"
-            android:textColor="@android:color/holo_blue_dark"
             android:textAppearance="?android:textAppearanceLarge"
             android:layout_marginTop="@dimen/textview_child_margintop" />
 
@@ -50,14 +49,14 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/colorAuthorText"
             android:textAppearance="?android:textAppearanceMedium" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColor="@color/colorDateText"
             android:textSize="@dimen/textview_date_textsize" />
 
         <TextView
@@ -66,7 +65,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="5"
-            android:textColor="@android:color/holo_blue_bright"
+            android:textColor="#ae00ac"
             android:textSize="@dimen/textview_summary_textsize" />
     </LinearLayout>
 </LinearLayout>

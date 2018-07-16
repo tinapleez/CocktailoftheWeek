@@ -9,9 +9,13 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@android:color/holo_blue_bright</item>
-        <item name="colorPrimaryDark">@android:color/holo_blue_dark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="actionMenuTextColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorText</item>
+
     </style>
 
 </resources>

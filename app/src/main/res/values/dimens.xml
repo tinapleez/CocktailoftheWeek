@@ -7,8 +7,8 @@
 <resources>
     <dimen name="listview_divider_height">8dp</dimen>
     <dimen name="linearlayout_parent_padding">16dp</dimen>
-    <dimen name="textview_image_width">24dp</dimen>
-    <dimen name="textview_image_height">24dp</dimen>
+    <dimen name="textview_image_width">18dp</dimen>
+    <dimen name="textview_image_height">18dp</dimen>
     <dimen name="textview_image_textsize">16sp</dimen>
     <dimen name="linearlayout_child_width">0dp</dimen>
     <dimen name="linearlayout_child_marginleft">16dp</dimen>

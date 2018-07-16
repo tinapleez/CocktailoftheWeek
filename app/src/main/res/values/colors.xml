@@ -6,7 +6,17 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!--  <color name="colorPrimary">#3F51B5</color>
+      <color name="colorPrimaryDark">#303F9F</color>
+      <color name="colorAccent">#FF4081</color>-->
+
+    <color name="colorPrimary">#ffcd10</color>
+    <color name="colorPrimaryDark">#dcae00</color>
+    <color name="colorAccent">#cd10ff</color>
+    <color name="colorText">#9a00c3</color>
+    <color name="colorAuthorText">#5d7eff</color>
+    <color name="colorDateText">#5d7eff</color>
+    <color name="relativelayout_main_background">#fffae8</color>
+
 </resources>
+
