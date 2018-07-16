@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018. Tina Taylor
+  ~ CREATIVE COMMONS Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+  ~ https://creativecommons.org/licenses/by-sa/3.0/
+  -->
+
+<resources>
+    <dimen name="listview_divider_height">8dp</dimen>
+    <dimen name="linearlayout_parent_padding">16dp</dimen>
+    <dimen name="textview_image_width">24dp</dimen>
+    <dimen name="textview_image_height">24dp</dimen>
+    <dimen name="textview_image_textsize">16sp</dimen>
+    <dimen name="linearlayout_child_width">0dp</dimen>
+    <dimen name="linearlayout_child_marginleft">16dp</dimen>
+    <dimen name="textview_date_textsize">12sp</dimen>
+    <dimen name="textview_summary_textsize">18sp</dimen>
+    <dimen name="textview_child_margintop">8dp</dimen>
+    <dimen name="textview_image_margintop">16dp</dimen>
+</resources>

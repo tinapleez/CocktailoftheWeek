@@ -8,30 +8,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingEnd="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingStart="16dp">
+    android:paddingEnd="@dimen/linearlayout_parent_padding"
+    android:paddingLeft="@dimen/linearlayout_parent_padding"
+    android:paddingRight="@dimen/linearlayout_parent_padding"
+    android:paddingStart="@dimen/linearlayout_parent_padding">
 
     <TextView
         android:id="@+id/image"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center_vertical"
+        android:layout_width="@dimen/textview_image_width"
+        android:layout_height="@dimen/textview_image_height"
+        android:layout_gravity="top"
+        android:layout_marginTop="@dimen/textview_image_margintop"
         android:background="@drawable/circle"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
-        tools:text="#1" />
+        android:textSize="@dimen/textview_image_textsize" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginLeft="@dimen/linearlayout_child_marginleft"
+        android:layout_marginStart="@dimen/linearlayout_child_marginleft"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -40,11 +40,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="1"
-            android:textAllCaps="true"
-            android:textColor="@android:color/holo_blue_bright"
-            android:textSize="12sp"
-            tools:text="Cocktail Name" />
+            android:maxLines="3"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:layout_marginTop="@dimen/textview_child_margintop" />
 
         <TextView
             android:id="@+id/author"
@@ -52,27 +51,23 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textAllCaps="true"
-            android:textColor="@android:color/holo_blue_bright"
-            android:textSize="12sp"
-            tools:text="Author" />
+            android:textColor="@android:color/holo_blue_dark"
+            android:textAppearance="?android:textAppearanceMedium" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/holo_blue_bright"
-            android:textSize="12sp"
-            tools:text="July 2018" />
+            android:textSize="@dimen/textview_date_textsize" />
 
         <TextView
             android:id="@+id/summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="5"
             android:textColor="@android:color/holo_blue_bright"
-            android:textSize="16sp"
-            tools:text="Summary placeholder location wraps more than 2 lines of text" />
+            android:textSize="@dimen/textview_summary_textsize" />
     </LinearLayout>
 </LinearLayout>
