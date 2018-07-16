@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2018. Tina Taylor
-  ~ CREATIVE COMMONS Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
-  ~ https://creativecommons.org/licenses/by-sa/3.0/
-  -->
-
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@drawable/ic_launcher_background" />
-    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+    <background android:drawable="@color/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
 </adaptive-icon>
