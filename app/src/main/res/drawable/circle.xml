@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2018. Tina Taylor
+  ~ CREATIVE COMMONS Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+  ~ https://creativecommons.org/licenses/by-sa/3.0/
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@android:color/holo_blue_dark" />
+    <size
+        android:width="36dp"
+        android:height="36dp" />
+    <corners android:radius="18dp" />
+</shape>
