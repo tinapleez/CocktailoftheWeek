@@ -51,7 +51,8 @@ public class CocktailLoader extends AsyncTaskLoader<List<Cocktail>> {
         }
 
         // Perform the network request, parse the response, and extract a list of cocktails.
-        List<Cocktail> cocktails = QueryUtils.fetchCocktailData(mUrl);
-        return cocktails;
+        // Return list of cocktail articles to CocktailAdapter
+        List<Cocktail> cocktailArticleList = QueryUtils.fetchCocktailData(mUrl);
+        return cocktailArticleList;
     }
 }

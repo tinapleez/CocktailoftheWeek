@@ -148,8 +148,8 @@ public final class QueryUtils {
     }
 
     /**
-     * Parse the JSON response and return a list of {@link Cocktail} objects, Called from
-     * fetchCocktailData()
+     * Parse the String of JSON response and return a list extracted of {@link Cocktail} objects,
+     * Called from fetchCocktailData()
      */
     private static List<Cocktail> extractFieldsFromJson(String cocktailJson) {
         // If the JSON string is empty or null, then return early.
@@ -157,23 +157,23 @@ public final class QueryUtils {
             return null;
         }
 
-        // Create an empty ArrayList that we can start adding cocktails to
+        // Create an empty ArrayList that we can start adding Cocktails article fields to
         List<Cocktail> cocktailList = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
-        // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
 
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(cocktailJson);
 
-            // Extract the JSONArray associated with the key called "leadContent",
-            // which has the title, the date, and the url of the Cocktail article.
-            JSONArray leadContentArray = baseJsonResponse.getJSONArray("leadContent");
+            JSONObject responseObject = baseJsonResponse.getJSONObject("response");
 
-            // For each Cocktail article in the leadContentArray, create an {@link Cocktail}
-            // object
+            // Extract the JSONArray associated with the key called "leadContent",
+            JSONArray leadContentArray = responseObject.getJSONArray("leadContent");
+
+            // For each key in the leadContentArray, create an {@link Cocktail}
+            // object for the fields needed
             for (int i = 0; i < leadContentArray.length(); i++) {
 
                 // Get a single article at position i within the list of articles
@@ -182,27 +182,34 @@ public final class QueryUtils {
                 // Extract the value for the key called "webTitle", which is the name of the
                 // article.
                 String cocktailName = currentCocktail.getString("webTitle");
+                Log.i("QueryUtils", "Show the webTitle " + cocktailName);
 
                 // Extract the value for the key called "webPublicationDate"
                 String date = currentCocktail.getString("webPublicationDate");
+                Log.i("QueryUtils", "Show the date " + date);
 
                 // Extract the value for the key called "webUrl"
                 String url = currentCocktail.getString("webUrl");
+                Log.i("QueryUtils", "Show the url " + url);
 
 
-                // The key "fields" holds the byline, which holds the author's name
+                // The key "fields" object holds the byline, which is the author's name
                 JSONObject fields = currentCocktail.getJSONObject("fields");
 
                 String author = fields.getString("byline");
+                Log.i("QueryUtils", "Show the byline " + author);
 
 
-                // The key "blocks" holds the body of the article summary
+                // The key "blocks" object holds the "body" array, which first element contains the
+                // article summary
                 JSONObject blocks = currentCocktail.getJSONObject("blocks");
 
-                JSONObject body = blocks.getJSONObject("body");
+                JSONArray body = blocks.getJSONArray("body");
 
-                String summary = body.getString("bodyTextSummary");
+                JSONObject bodyFields = body.getJSONObject(0);
 
+                String summary = bodyFields.getString("bodyTextSummary");
+                Log.i("QueryUtils", "Show the summary " + summary);
 
                 // Create a new {@link Cocktail} object with the cocktailName, author, date,
                 // summary, and url
@@ -219,7 +226,7 @@ public final class QueryUtils {
             Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
         }
 
-        // Return the list of cocktails
+        // Return the list of Cocktail articles to the method call inside fetchCocktailData()
         return cocktailList;
     }
 }
