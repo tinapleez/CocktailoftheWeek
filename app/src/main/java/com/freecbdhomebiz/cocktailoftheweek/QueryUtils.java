@@ -9,11 +9,9 @@ package com.freecbdhomebiz.cocktailoftheweek;
 
 import android.text.TextUtils;
 import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,14 +41,7 @@ public final class QueryUtils {
      */
     public static List<Cocktail> fetchCocktailData(String requestUrl) {
 
-        // Just for fun, can simulate a slow network response by sleeping for 5 seconds
-        //try {
-        //   Thread.sleep(5000);
-        //} catch (InterruptedException e) {
-        //   e.printStackTrace();
-        //}
-
-        // Create URL object because makeHttpRequest does not accept a String input
+        // Create a new URL object because makeHttpRequest() does not accept a String input
         URL url = createUrl(requestUrl);
 
         // Perform HTTP request to the URL and receive a JSON response back
@@ -105,7 +96,7 @@ public final class QueryUtils {
             }
             if (inputStream != null) {
                 // Closing the input stream could throw an IOException, which is why
-                // the makeHttpRequest(URL url) method signature specifies than an IOException
+                // the makeHttpRequest(URL url) method signature specifies that an IOException
                 // could be thrown.
                 inputStream.close();
             }
