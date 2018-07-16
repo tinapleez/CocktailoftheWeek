@@ -18,16 +18,13 @@ public class CocktailLoader extends AsyncTaskLoader<List<Cocktail>> {
      */
     private static final String LOG_TAG = CocktailLoader.class.getName();
 
-    /**
-     * Query URL
-     */
     private String mUrl;
 
     /**
      * Constructs a new {@link CocktailLoader}.
      *
      * @param context of the activity
-     * @param url     to load data from
+     * @param url to query, sent from MainActivity onCreateLoader
      */
     public CocktailLoader(Context context, String url) {
         super(context);
@@ -47,6 +44,7 @@ public class CocktailLoader extends AsyncTaskLoader<List<Cocktail>> {
     @Override
     public List<Cocktail> loadInBackground() {
         Log.i(LOG_TAG, "TEST: loadInBackground() called ...");
+        Log.i(LOG_TAG, mUrl);
 
         if (mUrl == null) {
             return null;

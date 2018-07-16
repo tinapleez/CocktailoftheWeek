@@ -24,6 +24,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.freecbdhomebiz.cocktailoftheweek.BuildConfig.MY_GUARDIAN_API;
+
 public class MainActivity extends AppCompatActivity implements LoaderManager
         .LoaderCallbacks<List<Cocktail>> {
 
@@ -50,16 +52,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     /**
      * URL for querying the Guardian website for JSON response
      */
-    /**private static final String GUARDIAN_REQUEST_URL =
+    private static final String GUARDIAN_REQUEST_URL =
             "https://content.guardianapis.com/lifeandstyle/series/the-good-mixer?order-by=newest&" +
-                    "byline&show-fields=byline&show-blocks=body&api-key=" + "MY_GUARDIAN_API";
-     */
-
-
-    private static final String GUARDIAN_REQUEST_URL = "https://content.guardianapis" +
-            ".com/lifeandstyle/series/the-good-mixer?order-by=newest&byline " +
-            "&show-fields=byline&show-blocks=body&api-key=ff10a697-eda0-4866-9698-ceb9cdbde79a";
-
+                    "byline&show-fields=byline&show-blocks=body&api-key=" + MY_GUARDIAN_API;
+    
     /**
      * Constant value for the Cocktail loader ID. Only 1 loader.
      */
@@ -128,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     @Override
     public Loader<List<Cocktail>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
-        return new CocktailLoader(this, GUARDIAN_REQUEST_URL);
+        return new CocktailLoader(MainActivity.this, GUARDIAN_REQUEST_URL);
     }
 
     @Override

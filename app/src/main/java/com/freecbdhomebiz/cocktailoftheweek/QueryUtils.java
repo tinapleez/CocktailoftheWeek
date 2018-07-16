@@ -172,7 +172,7 @@ public final class QueryUtils {
     }
 
     /**
-     * Query the GUARDIAN and return a list of {@link Cocktail} objects.
+     * Query the GUARDIAN and return a list of {@link Cocktail} objects. Called from CocktailLoader
      */
     public static List<Cocktail> fetchCocktailData(String requestUrl) {
         Log.i("QueryUtils", "TEST: fetchCocktailData() called ...");
