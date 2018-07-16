@@ -39,17 +39,126 @@ public final class QueryUtils {
     }
 
     /**
-     * Return a list of {@link Cocktail} objects that has been built up from
-     * parsing the given JSON response.
+     * Query the GUARDIAN and return a list of {@link Cocktail} objects. Called from CocktailLoader
      */
-    private static List<Cocktail> extractFeatureFromJson(String cocktailJson) {
+    public static List<Cocktail> fetchCocktailData(String requestUrl) {
+        Log.i("QueryUtils", "TEST: fetchCocktailData() called ...");
+
+        // Just for fun, can simulate a slow network response by sleeping for 5 seconds
+        //try {
+        //   Thread.sleep(5000);
+        //} catch (InterruptedException e) {
+        //   e.printStackTrace();
+        //}
+
+        // Create URL object because makeHttpRequest does not accept a String input
+        URL url = createUrl(requestUrl);
+
+        // Perform HTTP request to the URL and receive a JSON response back
+        String jsonResponse = null;
+        try {
+            jsonResponse = makeHttpRequest(url);
+        } catch (IOException e) {
+            Log.e("QueryUtils", "Problem making the HTTP request.", e);
+        }
+
+        // Extract relevant fields from the JSON response and create a list of {@link Cocktail}
+        // articles
+        List<Cocktail> cocktails = extractFieldsFromJson(jsonResponse);
+
+        // Return the list of {@link Cocktail} articles
+        return cocktails;
+    }
+
+    /**
+     * Make an HTTP request to the given URL and return a String as the response.
+     */
+    private static String makeHttpRequest(URL url) throws IOException {
+        String jsonResponse = "";
+
+        // If the URL is null, then return early.
+        if (url == null) {
+            return jsonResponse;
+        }
+
+        HttpURLConnection urlConnection = null;
+        InputStream inputStream = null;
+        try {
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setReadTimeout(10000 /* milliseconds */);
+            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.connect();
+
+            // If the request was successful (response code 200),
+            // then read the input stream and parse the response.
+            if (urlConnection.getResponseCode() == 200) {
+                inputStream = urlConnection.getInputStream();
+                jsonResponse = readFromStream(inputStream);
+            } else {
+                Log.e("QueryUtils", "Error response code: " + urlConnection.getResponseCode());
+            }
+        } catch (IOException e) {
+            Log.e("QueryUtils", "Problem retrieving the Guardian JSON results.", e);
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+            if (inputStream != null) {
+                // Closing the input stream could throw an IOException, which is why
+                // the makeHttpRequest(URL url) method signature specifies than an IOException
+                // could be thrown.
+                inputStream.close();
+            }
+        }
+        // Return the String of JSON data to start parsing in extractFieldsFromJson()
+        return jsonResponse;
+    }
+
+    /**
+     * Returns new URL object from the given string URL.
+     */
+    private static URL createUrl(String stringUrl) {
+        URL url = null;
+        try {
+            url = new URL(stringUrl);
+        } catch (MalformedURLException e) {
+            Log.e("QueryUtils", "Problem building the URL ", e);
+        }
+        return url;
+    }
+
+    /**
+     * Convert the {@link InputStream} into a String which contains the
+     * whole JSON response from the server.
+     */
+    private static String readFromStream(InputStream inputStream) throws IOException {
+        StringBuilder output = new StringBuilder();
+        if (inputStream != null) {
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset
+                    .forName("UTF-8"));
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+            String line = reader.readLine();
+            while (line != null) {
+                output.append(line);
+                line = reader.readLine();
+            }
+        }
+        return output.toString();
+    }
+
+    /**
+     * Parse the JSON response and return a list of {@link Cocktail} objects, Called from
+     * fetchCocktailData()
+     */
+    private static List<Cocktail> extractFieldsFromJson(String cocktailJson) {
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(cocktailJson)) {
             return null;
         }
 
         // Create an empty ArrayList that we can start adding cocktails to
-        List<Cocktail> cocktails = new ArrayList<>();
+        List<Cocktail> cocktailList = new ArrayList<>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -97,10 +206,10 @@ public final class QueryUtils {
 
                 // Create a new {@link Cocktail} object with the cocktailName, author, date,
                 // summary, and url
-                Cocktail cocktail = new Cocktail(cocktailName, author, date, summary, url);
+                Cocktail fieldsExtracted = new Cocktail(cocktailName, author, date, summary, url);
 
                 // Add the new {@link Earthquake} to the list of cocktails.
-                cocktails.add(cocktail);
+                cocktailList.add(fieldsExtracted);
             }
 
         } catch (JSONException e) {
@@ -111,114 +220,6 @@ public final class QueryUtils {
         }
 
         // Return the list of cocktails
-        return cocktails;
-    }
-
-    /**
-     * Returns new URL object from the given string URL.
-     */
-    private static URL createUrl(String stringUrl) {
-        URL url = null;
-        try {
-            url = new URL(stringUrl);
-        } catch (MalformedURLException e) {
-            Log.e("QueryUtils", "Problem building the URL ", e);
-        }
-        return url;
-    }
-
-    /**
-     * Make an HTTP request to the given URL and return a String as the response.
-     */
-    private static String makeHttpRequest(URL url) throws IOException {
-        String jsonResponse = "";
-
-        // If the URL is null, then return early.
-        if (url == null) {
-            return jsonResponse;
-        }
-
-        HttpURLConnection urlConnection = null;
-        InputStream inputStream = null;
-        try {
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000 /* milliseconds */);
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
-
-            // If the request was successful (response code 200),
-            // then read the input stream and parse the response.
-            if (urlConnection.getResponseCode() == 200) {
-                inputStream = urlConnection.getInputStream();
-                jsonResponse = readFromStream(inputStream);
-            } else {
-                Log.e("QueryUtils", "Error response code: " + urlConnection.getResponseCode());
-            }
-        } catch (IOException e) {
-            Log.e("QueryUtils", "Problem retrieving the Guardian JSON results.", e);
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-            if (inputStream != null) {
-                // Closing the input stream could throw an IOException, which is why
-                // the makeHttpRequest(URL url) method signature specifies than an IOException
-                // could be thrown.
-                inputStream.close();
-            }
-        }
-        return jsonResponse;
-    }
-
-    /**
-     * Query the GUARDIAN and return a list of {@link Cocktail} objects. Called from CocktailLoader
-     */
-    public static List<Cocktail> fetchCocktailData(String requestUrl) {
-        Log.i("QueryUtils", "TEST: fetchCocktailData() called ...");
-
-        // Just for fun, can simulate a slow network response by sleeping for 5 seconds
-        //try {
-        //   Thread.sleep(5000);
-        //} catch (InterruptedException e) {
-        //   e.printStackTrace();
-        //}
-
-        // Create URL object
-        URL url = createUrl(requestUrl);
-
-        // Perform HTTP request to the URL and receive a JSON response back
-        String jsonResponse = null;
-        try {
-            jsonResponse = makeHttpRequest(url);
-        } catch (IOException e) {
-            Log.e("QueryUtils", "Problem making the HTTP request.", e);
-        }
-
-        // Extract relevant fields from the JSON response and create a list of {@link Cocktail}
-        // articles
-        List<Cocktail> cocktails = extractFeatureFromJson(jsonResponse);
-
-        // Return the list of {@link Cocktail} articles
-        return cocktails;
-    }
-
-    /**
-     * Convert the {@link InputStream} into a String which contains the
-     * whole JSON response from the server.
-     */
-    private static String readFromStream(InputStream inputStream) throws IOException {
-        StringBuilder output = new StringBuilder();
-        if (inputStream != null) {
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset
-                    .forName("UTF-8"));
-            BufferedReader reader = new BufferedReader(inputStreamReader);
-            String line = reader.readLine();
-            while (line != null) {
-                output.append(line);
-                line = reader.readLine();
-            }
-        }
-        return output.toString();
+        return cocktailList;
     }
 }

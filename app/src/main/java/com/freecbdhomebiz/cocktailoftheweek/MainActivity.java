@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     private static final String GUARDIAN_REQUEST_URL =
             "https://content.guardianapis.com/lifeandstyle/series/the-good-mixer?order-by=newest&" +
                     "byline&show-fields=byline&show-blocks=body&api-key=" + MY_GUARDIAN_API;
-    
+
     /**
      * Constant value for the Cocktail loader ID. Only 1 loader.
      */
