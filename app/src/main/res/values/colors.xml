@@ -17,6 +17,8 @@
     <color name="colorAuthorText">#5d7eff</color>
     <color name="colorDateText">#5d7eff</color>
     <color name="relativelayout_main_background">#fffae8</color>
+    <color name="colorSummaryText">#ae00ac</color>
+    <color name="actionbar_text">#5d7eff</color>
 
 </resources>
 

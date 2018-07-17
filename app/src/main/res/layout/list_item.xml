@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="5"
-            android:textColor="#ae00ac"
+            android:textColor="@color/colorSummaryText"
             android:textSize="@dimen/textview_summary_textsize" />
     </LinearLayout>
 </LinearLayout>
