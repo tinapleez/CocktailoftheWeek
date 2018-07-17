@@ -13,8 +13,8 @@ import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -29,21 +29,11 @@ import static com.freecbdhomebiz.cocktailoftheweek.BuildConfig.MY_GUARDIAN_API;
 public class MainActivity extends AppCompatActivity implements LoaderManager
         .LoaderCallbacks<List<Cocktail>> {
 
-    private TextView mImage;
-    private TextView mCocktailName;
-    private TextView mAuthor;
-    private TextView mDate;
-    private TextView mSummary;
     private ListView mlistView;
     private TextView mEmptyView;
     private ProgressBar mSpinningCircle;
 
     private void assignViews() {
-        mImage = findViewById(R.id.image);
-        mCocktailName = findViewById(R.id.cocktail_name);
-        mAuthor = findViewById(R.id.author);
-        mDate = findViewById(R.id.date);
-        mSummary = findViewById(R.id.summary);
         mlistView = findViewById(R.id.list);
         mEmptyView = findViewById(R.id.empty_view);
         mSpinningCircle = findViewById(R.id.spinning_circle);

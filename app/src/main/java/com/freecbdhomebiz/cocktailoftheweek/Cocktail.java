@@ -7,6 +7,7 @@
 package com.freecbdhomebiz.cocktailoftheweek;
 
 public class Cocktail {
+    private String mSectionName;
     private String mCocktailName;
     private String mAuthor;
     private String mDate;
@@ -15,14 +16,17 @@ public class Cocktail {
 
     /**
      * Constructs a new Cocktail object
-     *
-     * @param cocktailName is the name of the drink
+     * @param sectionName is the section of the newspaper where the article resides
+     * @param cocktailName is the name of the article
      * @param author is the author of the article
      * @param date is the published date of the article
      * @param summary is the summarized body of the article
      * @param url is the website link to the Cocktail article
      */
-    public Cocktail(String cocktailName, String author, String date, String summary, String url) {
+    public Cocktail(String sectionName, String cocktailName, String author, String date, String
+            summary, String
+                            url) {
+        mSectionName = sectionName;
         mCocktailName = cocktailName;
         mAuthor = author;
         mDate = date;
@@ -31,7 +35,14 @@ public class Cocktail {
     }
 
     /**
-     * Returns the name of the Cocktail
+     * Returns the section of the Guardian newspaper
+     */
+    public String getSectionName() {
+        return mSectionName;
+    }
+
+    /**
+     * Returns the name of the Cocktail article
      */
     public String getCocktailName() {
         return mCocktailName;

@@ -9,9 +9,11 @@ package com.freecbdhomebiz.cocktailoftheweek;
 
 import android.text.TextUtils;
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -138,8 +140,8 @@ public final class QueryUtils {
     }
 
     /**
-     * Parse the String of JSON response and return a list extracted of {@link Cocktail} objects,
-     * Called from fetchCocktailData()
+     * Parse the the JSON response String and return a list extracted of {@link Cocktail}
+     * objects, Called from fetchCocktailData()
      */
     private static List<Cocktail> extractFieldsFromJson(String cocktailJson) {
         // If the JSON string is empty or null, then return early.
@@ -169,6 +171,10 @@ public final class QueryUtils {
                 // Get a single article at position i within the list of articles
                 JSONObject currentCocktail = leadContentArray.getJSONObject(i);
 
+                // Extract the value for the key called sectionName, which is the section of the
+                // newspaper
+                String sectionName = currentCocktail.getString("sectionName");
+
                 // Extract the value for the key called "webTitle", which is the name of the
                 // article.
                 String cocktailName = currentCocktail.getString("webTitle");
@@ -193,7 +199,9 @@ public final class QueryUtils {
 
                 // Create a new {@link Cocktail} object with the cocktailName, author, date,
                 // summary, and url
-                Cocktail fieldsExtracted = new Cocktail(cocktailName, author, date, summary, url);
+                Cocktail fieldsExtracted = new Cocktail(sectionName, cocktailName, author, date,
+                                                        summary,
+                                                        url);
 
                 // Add the new object to the list of Cocktail articles.
                 cocktailList.add(fieldsExtracted);
@@ -203,7 +211,7 @@ public final class QueryUtils {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the JSON results", e);
         }
 
         // Return the list of Cocktail articles to the method call inside fetchCocktailData()

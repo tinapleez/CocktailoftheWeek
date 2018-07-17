@@ -6,6 +6,8 @@
 
 <resources>
     <string name="app_name">Cocktail of the Week</string>
-    <string name="no_cocktails">No cocktails found.</string>
-    <string name="no_internet_connection">No Internet connection!</string>
+    <string name="no_cocktails">No cocktails found. The section of the newspaper website may be
+        unreachable right now. Please close the app and check again later.</string>
+    <string name="no_internet_connection">No Internet connection! Restart the app after you
+        connect to the internet.</string>
 </resources>

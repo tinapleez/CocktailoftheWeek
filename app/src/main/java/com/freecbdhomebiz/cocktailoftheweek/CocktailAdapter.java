@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
 import java.util.List;
 
 public class CocktailAdapter extends ArrayAdapter {
@@ -24,7 +25,7 @@ public class CocktailAdapter extends ArrayAdapter {
     }
 
     /**
-     * Returns cocktail article data from a given position in the list passed from CocktailLoader
+     * Returns Cocktail article data from a given position in the list passed from CocktailLoader
      * so that each item can be displayed
      */
     @NonNull
@@ -40,6 +41,12 @@ public class CocktailAdapter extends ArrayAdapter {
 
         // Find the Cocktail article in the given position in the list of articles
         Cocktail currentCocktail = (Cocktail) getItem(position);
+
+        // Get the name of the section of the newspaper
+        String sectionName = currentCocktail.getSectionName();
+        //Find the TextView with id of section_name
+        TextView sectionView = listItemView.findViewById(R.id.section_name);
+        sectionView.setText(sectionName);
 
         // Get the name of the Cocktail article
         String cocktailName = currentCocktail.getCocktailName();
