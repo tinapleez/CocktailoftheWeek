@@ -38,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             // The code in this method takes care of updating the displayed preference summary
-            // after it has been changed
+            // after it has been changed. Show labels instead of keys.
             String stringValue = value.toString();
             if (preference instanceof ListPreference) {
                 ListPreference listPreference = (ListPreference) preference;

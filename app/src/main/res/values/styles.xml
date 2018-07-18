@@ -10,6 +10,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
         <item name="android:textColorPrimary">@color/colorText</item>
         <item name="android:textColor">@color/colorText</item>
 
@@ -18,6 +19,11 @@
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
         <item name="actionMenuTextColor">@color/actionbar_text</item>
+
+        <item name="android:actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
+        <!-- Support library compatibility -->
+        <item name="actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
+
     </style>
 
     <!-- ActionBar styles -->
@@ -33,5 +39,10 @@
         <item name="android:textColor">@color/actionbar_text</item>
         <!-- The textColor property is backward compatible with the Support Library -->
     </style>
-    
+
+    <!-- Tint color of overflow menu button -->
+    <style name="MyOverflowButtonStyle" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/actionbar_text</item>
+    </style>
+
 </resources>

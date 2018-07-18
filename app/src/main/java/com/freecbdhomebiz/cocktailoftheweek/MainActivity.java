@@ -155,7 +155,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
 
         // Append query parameter and its value. For example, it will build 'show-blocks=body'
         uriBuilder.appendQueryParameter("order-by", order);
-        uriBuilder.appendQueryParameter("byline&show-fields", "byline");
+        uriBuilder.appendQueryParameter("byline", "");
+        uriBuilder.appendQueryParameter("show-fields", "byline");
         uriBuilder.appendQueryParameter("show-blocks", "body");
         uriBuilder.appendQueryParameter("api-key", MY_GUARDIAN_API);
 
