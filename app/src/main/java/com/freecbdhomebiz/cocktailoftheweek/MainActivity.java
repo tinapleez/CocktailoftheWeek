@@ -17,7 +17,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -164,7 +163,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         // "byline&show-fields=byline&show-blocks=body&api-key=" + MY_GUARDIAN_API;
 
         // Return the completed uri to CocktailLoader
-        Log.i("MainActivity", "The Built URL is: " + uriBuilder.toString());
         return new CocktailLoader(MainActivity.this, uriBuilder.toString());
     }
 
