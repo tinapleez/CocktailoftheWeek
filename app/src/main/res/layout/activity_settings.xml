@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018. Tina Taylor
+  ~ CREATIVE COMMONS Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+  ~ https://creativecommons.org/licenses/by-sa/3.0/
+  -->
+
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name="com.freecbdhomebiz.cocktailoftheweek.SettingsActivity$CocktailPreferenceFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.freecbdhomebiz.cocktailoftheweek.SettingsActivity">
+
+</fragment>
