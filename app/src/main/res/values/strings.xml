@@ -17,14 +17,14 @@
     <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
     <string name="settings_order_by_label">Order By</string>
     <string name="settings_order_by_key" translatable="false">order_by</string>
-    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_most_recent_value</string>
-
-    <!-- Label for order-by magnitude option [CHAR LIMIT=20] -->
-    <string name="settings_order_by_author_label">Author</string>
-    <string name="settings_order_by_author_value" translatable="false">author</string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_newest_value</string>
 
     <!-- Label for order-by most recent option [CHAR LIMIT=20] -->
-    <string name="settings_order_by_most_recent_label">Most Recent</string>
-    <string name="settings_order_by_most_recent_value" translatable="false">date</string>
+    <string name="settings_order_by_newest_label">Newest</string>
+    <string name="settings_order_by_newest_value" translatable="false">newest</string>
+
+    <!-- Label for order-by magnitude option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_author_label">Oldest</string>
+    <string name="settings_order_by_author_value" translatable="false">oldest</string>
 
 </resources>

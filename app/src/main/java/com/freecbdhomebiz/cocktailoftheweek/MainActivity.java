@@ -10,11 +10,14 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,11 +45,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     }
 
     /**
-     * URL for querying the Guardian website for JSON response
+     * URL for querying the Guardian website server for JSON response
      */
     private static final String GUARDIAN_REQUEST_URL =
-            "https://content.guardianapis.com/lifeandstyle/series/the-good-mixer?order-by=newest&" +
-                    "byline&show-fields=byline&show-blocks=body&api-key=" + MY_GUARDIAN_API;
+            "https://content.guardianapis.com/lifeandstyle/series/the-good-mixer";
 
     /**
      * Constant value for the Cocktail loader ID. Only 1 loader.
@@ -136,7 +138,33 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     @Override
     public Loader<List<Cocktail>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
-        return new CocktailLoader(MainActivity.this, GUARDIAN_REQUEST_URL);
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // get the Order By default values, either Newest or Oldest
+        String order = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default)
+        );
+
+        // parse makes the URL into URI
+        Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
+
+        // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        // Append query parameter and its value. For example, the `format=geojson`
+        uriBuilder.appendQueryParameter("order-by", order);
+        uriBuilder.appendQueryParameter("byline&show-fields", "byline");
+        uriBuilder.appendQueryParameter("show-blocks", "body");
+        uriBuilder.appendQueryParameter("api-key", MY_GUARDIAN_API);
+
+        // + "?order-by=newest&" +
+        // "byline&show-fields=byline&show-blocks=body&api-key=" + MY_GUARDIAN_API;
+
+        // Return the completed uri
+        Log.i("MainActivity", "The Built URL is: " + uriBuilder.toString());
+        return new CocktailLoader(MainActivity.this, uriBuilder.toString());
     }
 
     @Override
