@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        // Append query parameter and its value. For example, the `format=geojson`
+        // Append query parameter and its value. For example, it will build 'show-blocks=body'
         uriBuilder.appendQueryParameter("order-by", order);
         uriBuilder.appendQueryParameter("byline&show-fields", "byline");
         uriBuilder.appendQueryParameter("show-blocks", "body");
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         // + "?order-by=newest&" +
         // "byline&show-fields=byline&show-blocks=body&api-key=" + MY_GUARDIAN_API;
 
-        // Return the completed uri
+        // Return the completed uri to CocktailLoader
         Log.i("MainActivity", "The Built URL is: " + uriBuilder.toString());
         return new CocktailLoader(MainActivity.this, uriBuilder.toString());
     }
