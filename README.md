@@ -19,7 +19,7 @@ https://www.gnu.org/licenses/gpl-3.0.en.html
 .
 
 
-***You will need to add your own API to the UriBuilder.
+***You will need to add your own API Key to the UriBuilder.
 
 
 ![Animated GIF of Cocktail of the Week App](https://user-images.githubusercontent.com/35104977/42865499-d470b3a6-8a37-11e8-8f83-57e672eda7cb.gif "Animated GIF of Cocktail of the Week App")
